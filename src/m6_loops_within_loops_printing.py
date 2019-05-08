@@ -88,14 +88,16 @@ def shape(r):
     #    DIFFICULTY:      7
     #    TIME ESTIMATE:  15 minutes.
     # -------------------------------------------------------------------------
-    for k in range(r,0,-1):
-        for z in range(r-k):
+    for k in range(r):
+        for a in range(k):
             print(' ', end = '')
-        for T in range(k):
+        for b in range(r-k):
             print('+', end = '')
         print('!', end = '')
-        for A in range(k,0,-1):
-            print(A, end = '')
+        for z in range(r-k):
+            print((-k-z+r), end = '')
+        for P in range(k):
+            print('-', end = '')
 
         print()
 
