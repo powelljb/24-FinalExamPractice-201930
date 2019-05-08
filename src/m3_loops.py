@@ -6,8 +6,8 @@ This problem provides practice at:
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
-         and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         and Jake Powell.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 ###############################################################################
 # Students:
@@ -46,7 +46,7 @@ def main():
 def run_test_practice_problem3():
     """ Tests the   practice_problem3  function. """
     ###########################################################################
-    # TODO: 2. Implement this TEST function.
+    # DONE: 2. Implement this TEST function.
     #   It TESTS the  practice_problem3  function defined below.
     #   Include at least ** 2 ** ADDITIONAL tests beyond those we wrote.
     #
@@ -110,6 +110,12 @@ def run_test_practice_problem3():
              st.SimpleTestCase(practice_problem3,
                                [0, 1, 1.414213562373],
                                [286602]),
+             st.SimpleTestCase(practice_problem3,   # New added test.
+                               [25,3,4],
+                               [183,24,4,3]),
+             st.SimpleTestCase(practice_problem3,   # New added test.
+                               [3,4,5],
+                               [140,3,9,22])
              ]
     # 14th test:
     big_list = []
@@ -135,6 +141,9 @@ def run_test_practice_problem3():
     # SUGGESTION: Ask an assistant to CHECK your tests to confirm
     #             that they are adequate tests!
     ###########################################################################
+
+
+    # I added the tests in the list of the given tests above, they are the last two.
 
 
 def practice_problem3(start, n, threshold):
@@ -217,6 +226,22 @@ def practice_problem3(start, n, threshold):
     #    DIFFICULTY:      5
     #    TIME ESTIMATE:   < 15 minutes.
     ###########################################################################
+    list = []
+    if n == 0:
+        return []
+    if threshold >= math.sqrt(2):
+        for k in range(start,start+n):
+            list = list + [k]
+        return list
+
+
+
+
+
+
+
+
+
 
 
 # -----------------------------------------------------------------------------
