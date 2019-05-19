@@ -6,8 +6,8 @@ This problem provides practice at:
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
-         and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         and Jake Powell.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 ###############################################################################
 # Students:
@@ -30,6 +30,7 @@ Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
 ###############################################################################
 
 import rosegraphics as rg
+import math
 
 
 def main():
@@ -90,7 +91,7 @@ def hourglass(window, n, point, radius, color):
     a color that rosegraphics understands.
     """
     # -------------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #       We provided some tests for you (above).
     # -------------------------------------------------------------------------
     ###########################################################################
@@ -102,6 +103,38 @@ def hourglass(window, n, point, radius, color):
     #    DIFFICULTY:      8
     #    TIME ESTIMATE:  25 minutes (warning: this problem is challenging)
     # -------------------------------------------------------------------------
+    Central_x = point.x
+    Central_y = point.y
+    Move_x = Central_x
+    Move_y = Central_y
+    Move2_x = Central_x
+    Move2_y = Central_y
+    adjust = radius*math.sqrt(3)
+
+    for k in range(1,n+1,1):
+        for z in range(k):
+            point = rg.Point(Move_x, Move_y)
+            circle = rg.Circle(point, radius)
+            circle.fill_color = color
+            circle.attach_to(window)
+            Move_x = Move_x + radius*2
+        Move_y = Move_y - adjust
+        Move_x = Central_x - (radius)*(k+1) + radius
+        for z in range(k):
+            point = rg.Point(Move2_x, Move2_y)
+            circle = rg.Circle(point,radius)
+            circle.fill_color = color
+            circle.attach_to(window)
+            Move2_x = Move2_x + radius*2
+        Move2_x = Central_x - (radius)*(k+1) + radius
+        Move2_y = Move2_y + adjust
+    window.render()
+
+
+
+
+
+
 
 
 def run_test_many_hourglasses():
@@ -180,6 +213,30 @@ def many_hourglasses(window, square, m, colors):
     #                         a correct "hourglass" function above)
     #    TIME ESTIMATE:  20 minutes (warning: this problem is challenging)
     # -------------------------------------------------------------------------
+    radius = square.length_of_each_side / 2
+    diameter = radius*2
+    center = square.center
+    start_point_UR = rg.Point(center.x + radius, center.y - radius)
+    start_point_LL = rg.Point(center.x - radius, center.y + radius)
+    # corner_x = square.center.x - radius
+    # corner_y = square.center.y - radius
+    # corner = rg.Point(corner_x, corner_y)
+    # corner2_x = square.center.x + radius
+    # corner2_y = square.center.y - radius
+    # corner2 = rg.Point(corner2_x, corner2_y)
+    for k in range(m):
+        corner_upper_right = rg.Point(start_point_UR.x + diameter*k, start_point_UR.y - diameter)
+        corner_lower_left = rg.Point(start_point_LL.x + diameter*k, start_point_LL.y + diameter)
+        square.attach_to(window)
+        line = rg.Line(corner_upper_right,corner_lower_left)
+        point = line.get_midpoint()
+        new_rectangle = rg.Rectangle(corner_upper_right, corner_lower_left)
+        new_rectangle.attach_to(window)
+        hourglass(window, k + 1, point, radius, 'blue')
+
+
+        # hourglass(window,k+1,center,radius, 'blue')
+
 
 
 # -----------------------------------------------------------------------------
