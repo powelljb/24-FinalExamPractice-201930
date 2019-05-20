@@ -109,13 +109,7 @@ def run_test_practice_problem3():
                                [139, 183, 516, 560, 849]),
              st.SimpleTestCase(practice_problem3,
                                [0, 1, 1.414213562373],
-                               [286602]),
-             st.SimpleTestCase(practice_problem3,   # New added test.
-                               [25,3,4],
-                               [183,24,4,3]),
-             st.SimpleTestCase(practice_problem3,   # New added test.
-                               [3,4,5],
-                               [140,3,9,22])
+                               [286602])
              ]
     # 14th test:
     big_list = []
@@ -123,6 +117,24 @@ def run_test_practice_problem3():
         big_list.append(k)
     tests.append(st.SimpleTestCase(practice_problem3,
                                    [888, 1000,
+                                    - math.sqrt(2) - 0.00000000001],
+                                   big_list))
+
+    # 15th test:
+    big_list = []
+    for k in range(900, 1900):
+        big_list.append(k)
+    tests.append(st.SimpleTestCase(practice_problem3,
+                                   [900, 1000,
+                                    - math.sqrt(2) - 0.00000000001],
+                                   big_list))
+
+    # 16th test:
+    big_list = []
+    for k in range(904, 1904):
+        big_list.append(k)
+    tests.append(st.SimpleTestCase(practice_problem3,
+                                   [904, 1000,
                                     - math.sqrt(2) - 0.00000000001],
                                    big_list))
 
@@ -218,7 +230,7 @@ def practice_problem3(start, n, threshold):
       :type threshold: float
     """
     ###########################################################################
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #          Some tests are already written for you (above),
     #          but you are required to write ADDITIONAL tests (above).
     ###########################################################################
@@ -229,10 +241,17 @@ def practice_problem3(start, n, threshold):
     list = []
     if n == 0:
         return []
-    if threshold >= math.sqrt(2):
-        for k in range(start,start+n):
-            list = list + [k]
-        return list
+
+    count = 0
+    while True:
+        sum = math.cos(start) + math.sin(start)
+        if sum >= threshold:
+            count = count + 1
+            list = list + [start]
+        if count == n:
+            break
+        start = start + 1
+    return list
 
 
 
